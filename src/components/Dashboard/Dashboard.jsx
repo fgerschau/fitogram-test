@@ -38,12 +38,13 @@ class Dashboard extends Component {
         sanitizedData = sanitizedData.slice(0, 10);
         sanitizedData = sanitizedData.map((event) => {
           const sanitizedEvent = { ...event };
-          sanitizedEvent.sanitizedStartDateTime = moment(sanitizedEvent.startDateTime).format('LL');
-          sanitizedEvent.sanitizedStartTime = moment(event.startDateTime).format('LT');
-          sanitizedEvent.sanitizedEndTime = moment(event.endDateTime).format('LT');
+          sanitizedEvent.sanitizedStartDateTime = moment(sanitizedEvent.startDateTime).format('dddd, Do MMMM YYYY');
+          sanitizedEvent.sanitizedStartTime = moment(event.startDateTime).format('hh:mm');
+          sanitizedEvent.sanitizedEndTime = moment(event.endDateTime).format('hh:mm');
           const trainer = event.trainers.length ? event.trainers[0] : null;
           sanitizedEvent.trainer = trainer ? trainer.name : 'Unknown trainer';
-          sanitizedEvent.description = event.descriptions && event.descriptions.length ? `${event.descriptions[0].text.slice(0, 40)} ...` : '';
+          sanitizedEvent.description = event.descriptions && event.descriptions.length ? `${event.descriptions[0].text} ...` : '';
+          sanitizedEvent.shortDescription = `${sanitizedEvent.description.slice(0, 30)} ...`;
 
           return sanitizedEvent;
         });
@@ -94,7 +95,7 @@ class Dashboard extends Component {
                       <i className="fa fa-info" />
                     </div>
                     <div className="col-md-9 col-sm-9">
-                      {event.description}
+                      {event.shortDescription}
                     </div>
                   </div>
                   <div className={`row ${styles.featureRow}`}>

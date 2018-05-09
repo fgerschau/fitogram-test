@@ -16,4 +16,5 @@
 
 :local(.featureRow) {
   padding: 15px 0;
+  height: 110px;
 }
