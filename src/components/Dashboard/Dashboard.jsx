@@ -69,7 +69,7 @@ class Dashboard extends Component {
                 <div className="col-md-3 col-sm-12">
                   <div className={`row ${styles.featureRow}`}>
                     <div className="col-md-3 col-sm-3">
-                      <i className="fa fa-clock-o fa-3x" />
+                      <i className="fa fa-clock-o" />
                     </div>
                     <div className="col-md-9 col-sm-9">
                       {event.sanitizedStartDateTime}
@@ -79,7 +79,7 @@ class Dashboard extends Component {
                   </div>
                   <div className={`row ${styles.featureRow}`}>
                     <div className="col-md-3 col-sm-3">
-                      <i className="fa fa-map-marker fa-3x" />
+                      <i className="fa fa-map-marker" />
                     </div>
                     <div className="col-md-9 col-sm-9">
                       {event.location.name}
@@ -91,7 +91,7 @@ class Dashboard extends Component {
                 <div className="col-md-3 col-sm-12">
                   <div className={`row ${styles.featureRow}`}>
                     <div className="col-md-3 col-sm-3">
-                      <i className="fa fa-info fa-3x" />
+                      <i className="fa fa-info" />
                     </div>
                     <div className="col-md-9 col-sm-9">
                       {event.description}
@@ -99,7 +99,7 @@ class Dashboard extends Component {
                   </div>
                   <div className={`row ${styles.featureRow}`}>
                     <div className="col-md-3 col-sm-3">
-                      <i className="fa fa-user fa-3x" />
+                      <i className="fa fa-user" />
                     </div>
                     <div className="col-md-9 col-sm-9">
                       {event.trainer}
