@@ -41,6 +41,9 @@ class Dashboard extends Component {
           sanitizedEvent.sanitizedStartDateTime = moment(sanitizedEvent.startDateTime).format('LL');
           sanitizedEvent.sanitizedStartTime = moment(event.startDateTime).format('LT');
           sanitizedEvent.sanitizedEndTime = moment(event.endDateTime).format('LT');
+          const trainer = event.trainers.length ? event.trainers[0] : null;
+          sanitizedEvent.trainer = trainer ? trainer.name : 'Unknown trainer';
+          sanitizedEvent.description = event.descriptions && event.descriptions.length ? `${event.descriptions[0].text.slice(0, 40)} ...` : '';
 
           return sanitizedEvent;
         });
@@ -82,6 +85,24 @@ class Dashboard extends Component {
                       {event.location.name}
                       <br />
                       {event.location.city}
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-3 col-sm-12">
+                  <div className={`row ${styles.featureRow}`}>
+                    <div className="col-md-3 col-sm-3">
+                      <i className="fa fa-info fa-3x" />
+                    </div>
+                    <div className="col-md-9 col-sm-9">
+                      {event.description}
+                    </div>
+                  </div>
+                  <div className={`row ${styles.featureRow}`}>
+                    <div className="col-md-3 col-sm-3">
+                      <i className="fa fa-user fa-3x" />
+                    </div>
+                    <div className="col-md-9 col-sm-9">
+                      {event.trainer}
                     </div>
                   </div>
                 </div>
