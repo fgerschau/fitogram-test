@@ -23,6 +23,21 @@ const getProviders = async () => {
   return request;
 };
 
+const sanitizeData = (data = []) =>
+  data.map((event) => {
+    const sanitizedEvent = { ...event };
+    sanitizedEvent.sanitizedStartDateTime = moment(sanitizedEvent.startDateTime).format('dddd, Do MMMM YYYY');
+    sanitizedEvent.sanitizedStartTime = moment(event.startDateTime).format('hh:mm');
+    sanitizedEvent.sanitizedEndTime = moment(event.endDateTime).format('hh:mm');
+    const trainer = event.trainers.length ? event.trainers[0] : null;
+    sanitizedEvent.trainer = trainer ? trainer.name : 'Unknown trainer';
+    sanitizedEvent.description = event.descriptions && event.descriptions.length ? event.descriptions[0].text : '';
+    sanitizedEvent.shortDescription = `${sanitizedEvent.description.slice(0, 100)} ...`;
+    sanitizedEvent.alertnativeName = `${sanitizedEvent.description.slice(0, 30)} ...`;
+
+    return sanitizedEvent;
+  });
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -33,22 +48,10 @@ class Dashboard extends Component {
 
   componentDidMount() {
     getProviders().then((request = {}) => {
-      let sanitizedData = request.data;
-      if (sanitizedData && sanitizedData.length) {
-        sanitizedData = sanitizedData.slice(0, 10);
-        sanitizedData = sanitizedData.map((event) => {
-          const sanitizedEvent = { ...event };
-          sanitizedEvent.sanitizedStartDateTime = moment(sanitizedEvent.startDateTime).format('dddd, Do MMMM YYYY');
-          sanitizedEvent.sanitizedStartTime = moment(event.startDateTime).format('hh:mm');
-          sanitizedEvent.sanitizedEndTime = moment(event.endDateTime).format('hh:mm');
-          const trainer = event.trainers.length ? event.trainers[0] : null;
-          sanitizedEvent.trainer = trainer ? trainer.name : 'Unknown trainer';
-          sanitizedEvent.description = event.descriptions && event.descriptions.length ? `${event.descriptions[0].text} ...` : '';
-          sanitizedEvent.shortDescription = `${sanitizedEvent.description.slice(0, 100)} ...`;
-          sanitizedEvent.alertnativeName = `${sanitizedEvent.description.slice(0, 30)} ...`;
-
-          return sanitizedEvent;
-        });
+      let { data } = request;
+      if (data && data.length) {
+        data = data.slice(0, 10);
+        const sanitizedData = sanitizeData(data);
 
         this.setState({ events: sanitizedData });
       }
