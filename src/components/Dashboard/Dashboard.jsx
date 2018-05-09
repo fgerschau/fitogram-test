@@ -62,7 +62,7 @@ class Dashboard extends Component {
             this.state.events.map(event => (
               <div className={`row ${styles.row}`} key={event.id}>
                 <div className="col-md-6">
-                  <div className={styles.eventNameBackground} style={{ background: `url(${event.eventGroup.imageUrl}) no-repeat center top` }}>
+                  <div className={styles.eventNameBackground} style={{ background: `linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(${event.eventGroup.imageUrl}) no-repeat center top` }}>
                     <h3 className={styles.eventName}> {event.name} </h3>
                   </div>
                 </div>
