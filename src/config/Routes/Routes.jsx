@@ -7,7 +7,7 @@ const Routes = () => (
     <Route
       path="/"
       render={() => (
-        <Route path="/" component={Dashboard} />
+        <Route path="/dashboard" component={Dashboard} />
       )}
     />
   </Switch>

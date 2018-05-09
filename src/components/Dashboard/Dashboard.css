@@ -1,0 +1,19 @@
+:local(.row) {
+  margin-bottom: 2em;
+}
+
+:local(.eventNameBackground) {
+  padding-top: 4em;
+  height: 10em;
+}
+
+:local(.eventName) {
+  height: 100%;
+  color: white;
+  text-align: center;
+  vertical-align: middle !important;
+}
+
+:local(.featureRow) {
+  padding: 15px 0;
+}
