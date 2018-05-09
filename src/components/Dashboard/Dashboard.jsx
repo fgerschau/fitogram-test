@@ -44,7 +44,8 @@ class Dashboard extends Component {
           const trainer = event.trainers.length ? event.trainers[0] : null;
           sanitizedEvent.trainer = trainer ? trainer.name : 'Unknown trainer';
           sanitizedEvent.description = event.descriptions && event.descriptions.length ? `${event.descriptions[0].text} ...` : '';
-          sanitizedEvent.shortDescription = `${sanitizedEvent.description.slice(0, 30)} ...`;
+          sanitizedEvent.shortDescription = `${sanitizedEvent.description.slice(0, 100)} ...`;
+          sanitizedEvent.alertnativeName = `${sanitizedEvent.description.slice(0, 30)} ...`;
 
           return sanitizedEvent;
         });
@@ -95,7 +96,7 @@ class Dashboard extends Component {
                       <i className="fa fa-info" />
                     </div>
                     <div className="col-md-9 col-sm-9">
-                      {event.shortDescription}
+                      {event.alertnativeName}
                     </div>
                   </div>
                   <div className={`row ${styles.featureRow}`}>
@@ -104,6 +105,13 @@ class Dashboard extends Component {
                     </div>
                     <div className="col-md-9 col-sm-9">
                       {event.trainer}
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-6 col-sm-12 offset-md-6">
+                  <div className={`row ${styles.featureRow}`}>
+                    <div className="col-md-12">
+                      {event.shortDescription}
                     </div>
                   </div>
                 </div>

@@ -18,3 +18,8 @@
   padding: 15px 0;
   height: 110px;
 }
+
+/* Bootstrap's sm */
+@media only screen and (max-width: 991px) {
+
+}
